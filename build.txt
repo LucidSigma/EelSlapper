@@ -1,0 +1,3 @@
+displayName = Eel Slapper
+author = LucidSigma
+version = 0.1

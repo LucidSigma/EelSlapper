@@ -24,6 +24,7 @@ namespace EelSlapperMod.Content.Items.Weapons.Whips
             Item.DefaultToWhip(ModContent.ProjectileType<EelSlapperProjectile>(), Damage, Knockback, Velocity, UseTime);
 
             Item.rare = ItemRarityID.Orange;
+            Item.value = Item.sellPrice(0, 1, 50, 0);
         }
     }
 }

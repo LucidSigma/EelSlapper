@@ -14,7 +14,7 @@ namespace EelSlapperMod.Content.Projectiles.Whips
         : ModProjectile
     {
         private const int SegmentCount = 20;
-        private const float RangeMultiplier = 0.5f;
+        private const float RangeMultiplier = 0.42f;
 
         private const int SummonTagBuffTime = 360;
         private const float MultiHitPenalty = 0.33f;
@@ -40,39 +40,67 @@ namespace EelSlapperMod.Content.Projectiles.Whips
             Projectile.damage = Math.Max((int)(damage * (1.0f - MultiHitPenalty)), 1);
         }
 
-        private void DrawLine(in List<Vector2> list)
-        {
-            Texture2D texture = TextureAssets.FishingLine.Value;
-
-            Rectangle frame = texture.Frame();
-            Vector2 origin = new(frame.Width / 2, 2);
-
-            Vector2 position = list[0];
-
-            for (int i = 0; i < list.Count - 1; i++)
-            {
-                Vector2 element = list[i];
-                Vector2 difference = list[i + 1] - element;
-
-                float rotation = difference.ToRotation() - MathHelper.PiOver2;
-
-                Color color = Lighting.GetColor(element.ToTileCoordinates(), Color.White);
-                Vector2 scale = new Vector2(1, (difference.Length() + 2) / frame.Height);
-
-                Main.EntitySpriteDraw(texture, position - Main.screenPosition, frame, color, rotation, origin, scale, SpriteEffects.None, 0);
-
-                position += difference;
-            }
-        }
-
         public override bool PreDraw(ref Color lightColor)
         {
             List<Vector2> list = new();
             Projectile.FillWhipControlPoints(Projectile, list);
 
-            DrawLine(list);
+            SpriteEffects flip = Projectile.spriteDirection < 0
+                ? SpriteEffects.None
+                : SpriteEffects.FlipHorizontally;
 
-            Main.DrawWhip_WhipBland(Projectile, list);
+            Main.instance.LoadProjectile(Type);
+            Texture2D texture = TextureAssets.Projectile[Type].Value;
+
+            Vector2 position = list[0];
+
+            for (int i = 0; i < list.Count - 1; i++)
+            {
+                Rectangle frame = new(0, 0, 10, 26);
+                Vector2 origin = new(5.0f, 8.0f);
+                float scale = 1.0f;
+
+                if (i == list.Count - 2)
+                {
+                    frame.Y = 74;
+                    frame.Height = 18;
+                }
+                else if (i > 10)
+                {
+                    frame.Y = 58;
+                    frame.Height = 16;
+                }
+                else if (i > 5)
+                {
+                    frame.Y = 42;
+                    frame.Height = 16;
+                }
+                else if (i > 0)
+                {
+                    frame.Y = 26;
+                    frame.Height = 16;
+                }
+
+                Vector2 element = list[i];
+                Vector2 difference = list[i + 1] - element;
+
+                float rotation = difference.ToRotation() - MathHelper.PiOver2;
+                Color colour = Lighting.GetColor(element.ToTileCoordinates());
+
+                Main.EntitySpriteDraw(
+                    texture,
+                    position - Main.screenPosition,
+                    frame,
+                    colour,
+                    rotation,
+                    origin,
+                    scale,
+                    flip,
+                    0
+                );
+
+                position += difference;
+            }
 
             return false;
         }

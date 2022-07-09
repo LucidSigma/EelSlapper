@@ -1,0 +1,22 @@
+﻿Mods.EelSlapperMod: {
+    BuffName: {
+        EelSlapperSummonTagDebuff: Eel Slapper Summon Tag
+    }
+
+    BuffDescription: {
+        EelSlapperSummonTagDebuff: The humiliation of being slapped by an eel makes you take more damage from summons
+    }
+
+    ItemName: {
+        EelSlapper: Eel Slapper
+    }
+
+    ItemTooltip: {
+        EelSlapper:
+            '''
+            6 summon tag damage
+            Your summons will focus struck enemies
+            'Banned from fish-slapping dance routines'
+            '''
+    }
+}

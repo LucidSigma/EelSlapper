@@ -57,8 +57,6 @@ namespace EelSlapperMod.Content.Projectiles.Whips
             for (int i = 0; i < list.Count - 1; i++)
             {
                 Rectangle frame = new(0, 0, 10, 26);
-                Vector2 origin = new(5.0f, 8.0f);
-                float scale = 1.0f;
 
                 if (i == list.Count - 2)
                 {
@@ -84,7 +82,9 @@ namespace EelSlapperMod.Content.Projectiles.Whips
                 Vector2 element = list[i];
                 Vector2 difference = list[i + 1] - element;
 
+                Vector2 origin = new(5.0f, 8.0f);
                 float rotation = difference.ToRotation() - MathHelper.PiOver2;
+                float scale = 1.0f;
                 Color colour = Lighting.GetColor(element.ToTileCoordinates());
 
                 Main.EntitySpriteDraw(

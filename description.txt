@@ -1,1 +1,17 @@
-Eel Slapper is a pretty cool mod, it does...this. Modify this file with a description of your mod.
+A mod that adds a new whip called the Eel Slapper.
+
+It can be caught in the ocean at any time. It is intended to be viable for the majority of pre-hardmode.
+
+Eel Slapper stats:
+Damage: 22
+Velocity: 10
+Use time: 30
+Knockback: 4
+Summon tag damage: 6
+Multi-hit penalty: 33%
+
+The Eel Slapper is based on a weapon from the original WeaponOut mod by Flashkirby99, but reworked and resprited from scratch to make it a 1.4 summon whip instead.
+The original Eel Slapper data can be found here: https://terrariamods.fandom.com/wiki/WeaponOut/Eel_Slapper
+
+This mod is open source and is available here: https://github.com/LucidSigma/EelSlapper
+If you have anything you wish to contribute (such as translations) or want to fork this mod, you're more than welcome to.

@@ -13,11 +13,11 @@ namespace EelSlapperMod.Content.Projectiles.Whips
     public class EelSlapperProjectile
         : ModProjectile
     {
-        private const int SegmentCount = 20;
+        private const int SegmentCount = 30;
         private const float RangeMultiplier = 0.42f;
 
         private const int SummonTagBuffTime = 360;
-        private const float MultiHitPenalty = 0.33f;
+        private const float MultiHitPenalty = 1.0f / 3.0f;
 
         public override void SetStaticDefaults()
         {

@@ -32,12 +32,12 @@ namespace EelSlapperMod.Content.Projectiles.Whips
             Projectile.WhipSettings.RangeMultiplier = RangeMultiplier;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hitInfo, int damageDone)
         {
             target.AddBuff(ModContent.BuffType<EelSlapperSummonTagDebuff>(), SummonTagBuffTime);
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
 
-            Projectile.damage = Math.Max((int)(damage * (1.0f - MultiHitPenalty)), 1);
+            Projectile.damage = Math.Max((int)(damageDone * (1.0f - MultiHitPenalty)), 1);
         }
 
         public override bool PreDraw(ref Color lightColor)

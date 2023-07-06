@@ -18,11 +18,11 @@ namespace EelSlapperMod.Content.NPCs.Globals
             MarkedByEelSlapper = false;
         }
 
-        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers hitModifiers)
         {
             if (MarkedByEelSlapper && !projectile.npcProj && !projectile.trap && (projectile.minion || ProjectileID.Sets.MinionShot[projectile.type]))
             {
-                damage += SummonTagDamage;
+                hitModifiers.FlatBonusDamage += SummonTagDamage;
             }
         }
     }
